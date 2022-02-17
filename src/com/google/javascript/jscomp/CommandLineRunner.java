@@ -305,6 +305,13 @@ public class CommandLineRunner extends AbstractCommandLineRunner<Compiler, Compi
     private String variableMapOutputFile = "";
 
     @Option(
+        name = "--input_variable_renaming_report",
+        usage =
+            "File containing the serialized version of the variable "
+                + "renaming map produced by a previous compilation")
+    private String variableMapInputFile = "";
+
+    @Option(
         name = "--instrument_mapping_report",
         usage =
             "File where the encoded parameters created by Production Instrumentation are mapped to"
@@ -339,6 +346,13 @@ public class CommandLineRunner extends AbstractCommandLineRunner<Compiler, Compi
             "File where the serialized version of the property "
                 + "renaming map produced should be saved")
     private String propertyMapOutputFile = "";
+
+    @Option(
+        name = "--input_property_renaming_report",
+        usage =
+            "File containing the serialized version of the property "
+                + "renaming map produced by a previous compilation")
+    private String propertyMapInputFile = "";
 
     @Option(
         name = "--third_party",
@@ -1061,6 +1075,8 @@ public class CommandLineRunner extends AbstractCommandLineRunner<Compiler, Compi
                     "define",
                     "flagfile",
                     "help",
+                    "input_property_renaming_report",
+                    "input_variable_renaming_report",
                     "json_streams",
                     "third_party",
                     "use_types_for_optimization",
@@ -1733,6 +1749,8 @@ public class CommandLineRunner extends AbstractCommandLineRunner<Compiler, Compi
           .setVariableMapOutputFile(flags.variableMapOutputFile)
           .setCreateNameMapFiles(flags.createNameMapFiles)
           .setPropertyMapOutputFile(flags.propertyMapOutputFile)
+          .setPropertyMapInputFile(flags.propertyMapInputFile)
+          .setVariableMapInputFile(flags.variableMapInputFile)
           .setInstrumentationMappingFile(flags.instrumentationMappingOutputFile)
           .setCodingConvention(conv)
           .setSummaryDetailLevel(flags.summaryDetailLevel)
